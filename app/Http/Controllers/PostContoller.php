@@ -3,18 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 
 class PostContoller extends Controller
 {
     public function insert(request $request){
-        Post::create([
-            'user_id' => auth()->user()->id,
-            'title' => $request->title,
-            'description' => $request->description
+
+        $validate = Validator::make($request->all(),[
+            'title' => 'required',
+            'description' => 'required'
         ]);
 
-        return back();
+        if ($validate->fails()){
+            return back()->with('status','Something went Wrong');
+        }else {
+            Post::create([
+                'user_id' => auth()->user()->id,
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+        }
+        return redirect(route('post.all'))->with('status','Post Created Successfully');
     }
 
 

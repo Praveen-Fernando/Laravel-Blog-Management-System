@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AllPostview;
+use App\Http\Controllers\PostContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AllPostview::class, 'Viewallposts'])->name('welcome');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Posting
+Route::post("/post/insert", [PostContoller::class , 'insert'])->name('post.insert');
+Route::get("/Post/{postID}/postview",[PostContoller::class ,'postView'])->name('Post.postview');

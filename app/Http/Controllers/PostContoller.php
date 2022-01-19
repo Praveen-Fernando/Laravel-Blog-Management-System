@@ -24,4 +24,23 @@ class PostContoller extends Controller
 
         return view('Post.postview',compact('Post'));
     }
+
+    public function edit($postID){
+
+        $Post = Post::findOrFail($postID);
+
+        return view('Post.update',compact('Post'));
+    }
+
+    public function update($postID, Request $request){
+        Post::findOrFail($postID)->update($request->all());
+
+        return redirect(route('home'));
+    }
+
+    public function delete($postID){
+        Post::findorfail($postID)->delete();
+
+        return back();
+    }
 }

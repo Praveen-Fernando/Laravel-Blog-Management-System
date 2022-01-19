@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AllPostview;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostContoller;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Posting
 Route::post("/post/insert", [PostContoller::class , 'insert'])->name('post.insert');
 Route::get("/Post/{postID}/postview",[PostContoller::class ,'postView'])->name('Post.postview');
+Route::get("/post/viewAll",[HomeController::class, "viewAll"])->name('post.viewall');
+Route::get("/post/{postID}/edit",[PostContoller::class, "edit"])->name('post.edit');
+Route::Post("/post/{postID}/update",[PostContoller::class, "update"])->name('post.update');
+Route::get("/post/{postID}/delete",[PostContoller::class, "delete"])->name('post.delete');

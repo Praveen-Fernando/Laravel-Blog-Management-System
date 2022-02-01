@@ -9,23 +9,17 @@ use Illuminate\Http\Request;
 class PostContoller extends Controller
 {
     public function insert(request $request){
+        $imageName = time() . "." . $request->thumbnail->extension();
+        $request->thumbnail->move(public_path('thumbnails'),$imageName);
 
-        $validate = Validator::make($request->all(),[
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-
-        if ($validate->fails()){
-            return back()->with('status','Something went Wrong');
-        }else {
-            Post::create([
+        Post::create([
                 'user_id' => auth()->user()->id,
                 'title' => $request->title,
-                'description' => $request->description
+                'description' => $request->description,
+                'thumbnail' => $imageName
             ]);
-        }
-        return redirect(route('post.all'))->with('status','Post Created Successfully');
     }
+
 
 
     public function postView($postID){

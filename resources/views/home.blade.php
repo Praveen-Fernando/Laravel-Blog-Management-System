@@ -16,7 +16,7 @@
                             </div>
                         @endif
 
-                        <form method="post" action="{{route('post.insert')}}">
+                        <form method="post" action="{{route('post.insert')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Title</label>
@@ -27,6 +27,11 @@
                                 <label>Description</label>
                                 <textarea type="text" class="form-control" name="description" rows="5"
                                           placeholder="Enter description" required></textarea>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Upload Image</label>
+                                <input class="form-control" name="thumbnail" type="file">
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Post</button>

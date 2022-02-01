@@ -10,6 +10,7 @@
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
+                            <img src="{{asset('thumbnails/' . $post->thumbnail)}}" class="img-thumbnail" alt="thumbnail">
                             <h2 class="card-title">{{ $post->title }}</h2>
                             <p class="card-text">{{ $post->description }}</p>
                         </div>

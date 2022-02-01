@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Admincontroller;
 use App\Http\Controllers\AllPostview;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostContoller;
@@ -33,3 +34,6 @@ Route::get("/post/viewAll",[HomeController::class, "viewAll"])->name('post.viewa
 Route::get("/post/{postID}/edit",[PostContoller::class, "edit"])->name('post.edit');
 Route::Post("/post/{postID}/update",[PostContoller::class, "update"])->name('post.update');
 Route::get("/post/{postID}/delete",[PostContoller::class, "delete"])->name('post.delete');
+
+//Admin
+Route::get("/admin/dashboard", [Admincontroller::class, 'isAdmin'])->middleware('admin')->name('admin.dashboard');

@@ -10,7 +10,6 @@
                     <p class="primary-color">{{ $Post->postID }}</p>
                     <h1>{{ $Post->title }}</h1>
                     <p class="primary-color">{{ $Post->description }}</p>
-
                 </div>
             </div>
         </div>
